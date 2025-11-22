@@ -1,0 +1,69 @@
+{
+  "voices": [
+    {
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "name": "Rachel",
+      "gender": "female",
+      "age": "young",
+      "accent": "american",
+      "description": "Calm, clear voice ideal for accessibility",
+      "use_cases": ["navigation", "alerts", "general"]
+    },
+    {
+      "voice_id": "AZnzlk1XvdvUeBnXmlld",
+      "name": "Domi",
+      "gender": "female",
+      "age": "young",
+      "accent": "american",
+      "description": "Warm, friendly voice",
+      "use_cases": ["general", "announcements"]
+    },
+    {
+      "voice_id": "EXAVITQu4vr4xnSDxMaL",
+      "name": "Bella",
+      "gender": "female",
+      "age": "young",
+      "accent": "american",
+      "description": "Soft, gentle voice",
+      "use_cases": ["alerts", "guidance"]
+    },
+    {
+      "voice_id": "ErXwobaYiN019PkySvjV",
+      "name": "Antoni",
+      "gender": "male",
+      "age": "young",
+      "accent": "american",
+      "description": "Professional, clear voice",
+      "use_cases": ["navigation", "alerts"]
+    },
+    {
+      "voice_id": "VR6AewLTigWG4xSOukaG",
+      "name": "Arnold",
+      "gender": "male",
+      "age": "middle",
+      "accent": "american",
+      "description": "Deep, authoritative voice",
+      "use_cases": ["warnings", "important alerts"]
+    }
+  ],
+  "default_settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "presets": {
+    "navigation": {
+      "stability": 0.6,
+      "similarity_boost": 0.7
+    },
+    "alert": {
+      "stability": 0.7,
+      "similarity_boost": 0.8
+    },
+    "casual": {
+      "stability": 0.4,
+      "similarity_boost": 0.75
+    }
+  }
+}

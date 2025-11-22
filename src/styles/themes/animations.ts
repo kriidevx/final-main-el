@@ -1,0 +1,2 @@
+// Animations
+export const animations = {}
