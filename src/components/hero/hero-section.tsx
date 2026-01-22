@@ -67,12 +67,17 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link href="/signup">
               <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                Get Started Free
+                Get Started 
               </Button>
             </Link>
             <Link href="/dashboard">
               <Button size="lg" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 shadow-lg shadow-slate-900/20 hover:shadow-slate-900/30 transition-all duration-300 transform hover:-translate-y-1">
                 View Dashboard
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button size="lg" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 shadow-lg shadow-slate-900/20 hover:shadow-slate-900/30 transition-all duration-300 transform hover:-translate-y-1">
+                About Team
               </Button>
             </Link>
           </div>

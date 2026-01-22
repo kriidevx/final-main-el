@@ -82,3 +82,42 @@
 .floating-lines-container canvas {
   pointer-events: auto;
 }
+
+/* Animation Delays */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* CSS Variables for RGB values */
+:root {
+  --primary-rgb: 217, 70, 239;
+  --accent-rgb: 124, 58, 237;
+  --secondary-rgb: 59, 130, 246;
+}
+
+/* Additional Animations */
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

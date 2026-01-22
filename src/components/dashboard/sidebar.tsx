@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "../../lib/utils/cn";
+import { cn } from "@/lib/utils";
 import { Home, Video, BarChart3, Settings, Eye, Volume2, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { supabase } from "../../lib/supabase/client";
@@ -21,7 +21,9 @@ export default function Sidebar() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     router.push("/login");
   };
 

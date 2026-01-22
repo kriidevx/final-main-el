@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ISL Model Test</title>
+</head>
+<body>
+    <h1>ISL Model Connection Test</h1>
+    <button onclick="testModel()">Test Model Loading</button>
+    <button onclick="testPrediction()">Test Prediction</button>
+    <div id="results"></div>
+
+    <script>
+        async function testModel() {
+            console.log('Testing model loading...');
+            try {
+                const response = await fetch('http://localhost:8000/api/isl-model/load', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'load_model' })
+                });
+                const result = await response.json();
+                document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('results').innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testPrediction() {
+            console.log('Testing prediction...');
+            try {
+                const landmarks = new Array(126).fill(0.1);
+                const response = await fetch('http://localhost:8000/api/isl-model/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ landmarks: landmarks })
+                });
+                const result = await response.json();
+                document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('results').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

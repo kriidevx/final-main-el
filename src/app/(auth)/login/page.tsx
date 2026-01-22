@@ -21,6 +21,10 @@ export default function LoginPage() {
     setError("");
 
     try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured');
+      }
+      
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -99,7 +103,7 @@ export default function LoginPage() {
               </Button>
 
               <div className="text-center text-sm text-gray-400">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/signup" className="text-blue-400 hover:underline">
                   Sign up
                 </Link>

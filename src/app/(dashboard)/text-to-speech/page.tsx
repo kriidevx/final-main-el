@@ -49,8 +49,6 @@ export default function TextToSpeechPage() {
     try {
       await convertTextToSpeech(text, {
         voiceId: selectedVoice,
-        stability,
-        similarityBoost,
       });
     } catch (err) {
       console.error("TTS conversion failed:", err);

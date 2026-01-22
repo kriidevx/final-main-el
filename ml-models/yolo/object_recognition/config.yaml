@@ -1,0 +1,79 @@
+# YOLO Object Recognition Configuration
+
+# Model parameters
+model:
+  weights: "weights/yolov8n.pt"
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  max_detections: 100
+
+# Object filtering
+filtering:
+  target_classes: "all"  # "all" or list of class names
+  min_object_size: 0.01   # relative to frame size
+  max_object_size: 0.8    # relative to frame size
+  min_confidence: 0.3
+
+# Point and Speak settings
+point_and_speak:
+  enable: true
+  confidence_threshold: 0.6
+  description_length: "short"  # "short", "medium", "long"
+  include_position: true
+  include_size: false
+
+# Audio description settings
+audio:
+  enable_descriptions: true
+  description_frequency: 3.0  # seconds between descriptions
+  voice_speed: 1.0
+  volume: 0.8
+  max_objects_per_description: 3
+
+# Visualization settings
+visualization:
+  show_confidence: true
+  show_position: true
+  show_labels: true
+  bbox_thickness: 2
+  font_size: 0.5
+  color_scheme: "confidence"  # "confidence", "class", "uniform"
+
+# Performance settings
+performance:
+  device: "auto"  # auto, cpu, cuda
+  batch_size: 1
+  half_precision: true
+
+# Common objects to prioritize
+priority_classes:
+  - person
+  - car
+  - chair
+  - table
+  - phone
+  - book
+  - cup
+  - door
+  - window
+  - tv
+  - laptop
+
+# Safety-related objects
+safety_objects:
+  - fire hydrant
+  - stop sign
+  - traffic light
+  - stairs
+  - door
+  - window
+
+# Personal items
+personal_items:
+  - cell phone
+  - wallet
+  - keys
+  - backpack
+  - handbag
+  - watch
+  - glasses

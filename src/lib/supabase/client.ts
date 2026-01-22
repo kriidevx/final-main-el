@@ -13,14 +13,31 @@ import type {
   UserPreferences
 } from '../../types';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn('Supabase environment variables are not set. Database features will be disabled.');
+}
+
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
+
+// Helper function to check if Supabase is available
+function checkSupabase() {
+  if (!supabase) {
+    console.warn('Supabase is not configured. Database features are disabled.');
+    return false;
+  }
+  return true;
+}
 
 // Detection Functions
 export async function createDetection(detection: Omit<Detection, 'id' | 'created_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('detections')
     .insert([detection])
     .select()
@@ -31,7 +48,9 @@ export async function createDetection(detection: Omit<Detection, 'id' | 'created
 }
 
 export async function getDetections(userId: string, limit = 100) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('detections')
     .select('*')
     .eq('user_id', userId)
@@ -44,7 +63,9 @@ export async function getDetections(userId: string, limit = 100) {
 
 // TTS Functions
 export async function createTTSUsage(ttsUsage: Omit<TTSUsage, 'id' | 'created_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('tts_usage')
     .insert([ttsUsage])
     .select()
@@ -55,7 +76,9 @@ export async function createTTSUsage(ttsUsage: Omit<TTSUsage, 'id' | 'created_at
 }
 
 export async function getTTSUsage(userId: string, limit = 100) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('tts_usage')
     .select('*')
     .eq('user_id', userId)
@@ -68,7 +91,9 @@ export async function getTTSUsage(userId: string, limit = 100) {
 
 // Safety Alert Functions
 export async function createSafetyAlert(alert: Omit<SafetyAlert, 'id' | 'created_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('safety_alerts')
     .insert([alert])
     .select()
@@ -79,7 +104,9 @@ export async function createSafetyAlert(alert: Omit<SafetyAlert, 'id' | 'created
 }
 
 export async function getSafetyAlerts(userId: string, limit = 100) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('safety_alerts')
     .select('*')
     .eq('user_id', userId)
@@ -91,7 +118,9 @@ export async function getSafetyAlerts(userId: string, limit = 100) {
 }
 
 export async function acknowledgeSafetyAlert(alertId: string) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('safety_alerts')
     .update({ 
       acknowledged: true, 
@@ -107,7 +136,9 @@ export async function acknowledgeSafetyAlert(alertId: string) {
 
 // Sign Language Functions
 export async function createSignLanguageDetection(detection: Omit<SignLanguageDetection, 'id' | 'created_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('sign_language_detections')
     .insert([detection])
     .select()
@@ -118,7 +149,9 @@ export async function createSignLanguageDetection(detection: Omit<SignLanguageDe
 }
 
 export async function getSignLanguageDetections(userId: string, limit = 100) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('sign_language_detections')
     .select('*')
     .eq('user_id', userId)
@@ -131,7 +164,9 @@ export async function getSignLanguageDetections(userId: string, limit = 100) {
 
 // Session Functions
 export async function createUserSession(session: Omit<UserSession, 'id' | 'created_at' | 'updated_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('user_sessions')
     .insert([session])
     .select()
@@ -142,7 +177,9 @@ export async function createUserSession(session: Omit<UserSession, 'id' | 'creat
 }
 
 export async function endUserSession(sessionId: string) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('user_sessions')
     .update({ 
       session_end: new Date().toISOString() 
@@ -156,7 +193,9 @@ export async function endUserSession(sessionId: string) {
 }
 
 export async function getUserSessions(userId: string, limit = 50) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('user_sessions')
     .select('*')
     .eq('user_id', userId)
@@ -169,7 +208,9 @@ export async function getUserSessions(userId: string, limit = 50) {
 
 // Device Functions
 export async function getDevices(userId: string) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return [];
+  
+  const { data, error } = await supabase!
     .from('devices')
     .select('*')
     .eq('user_id', userId)
@@ -180,7 +221,9 @@ export async function getDevices(userId: string) {
 }
 
 export async function updateDeviceStatus(deviceId: string, status: string) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('devices')
     .update({ 
       status, 
@@ -196,10 +239,12 @@ export async function updateDeviceStatus(deviceId: string, status: string) {
 
 // Analytics Functions
 export async function getAnalyticsSummary(userId: string, days = 30) {
+  if (!checkSupabase()) return [];
+  
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - days);
   
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('analytics_summary')
     .select('*')
     .eq('user_id', userId)
@@ -212,7 +257,9 @@ export async function getAnalyticsSummary(userId: string, days = 30) {
 
 // User Preferences Functions
 export async function getUserPreferences(userId: string) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('user_preferences')
     .select('*')
     .eq('user_id', userId)
@@ -223,7 +270,9 @@ export async function getUserPreferences(userId: string) {
 }
 
 export async function updateUserPreferences(userId: string, preferences: Partial<UserPreferences>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('user_preferences')
     .update({ ...preferences, updated_at: new Date().toISOString() })
     .eq('user_id', userId)
@@ -236,7 +285,9 @@ export async function updateUserPreferences(userId: string, preferences: Partial
 
 // System Logs
 export async function createSystemLog(log: Omit<SystemLog, 'id' | 'created_at'>) {
-  const { data, error } = await supabase
+  if (!checkSupabase()) return null;
+  
+  const { data, error } = await supabase!
     .from('system_logs')
     .insert([log])
     .select()

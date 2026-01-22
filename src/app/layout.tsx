@@ -5,11 +5,6 @@ import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Vision Beyond - Assistive Technology Platform",
-  description: "AI-powered assistive technology for the blind, deaf, and mute communities",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

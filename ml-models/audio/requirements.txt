@@ -1,0 +1,14 @@
+# Whisper Speech-to-Text Dependencies
+openai-whisper==20231117
+torch==2.1.2
+torchaudio==2.1.2
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+
+# Audio processing
+ffmpeg-python==0.2.0
+
+# Optional: For better performance
+# accelerate==0.24.1
+# transformers==4.36.0

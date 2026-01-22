@@ -1,0 +1,100 @@
+# YOLO Obstacle Detection Configuration
+
+# Model parameters
+model:
+  weights: "weights/yolov8n.pt"
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  max_detections: 100
+
+# Distance estimation
+distance:
+  obstacle_distance_threshold: 2.0  # meters
+  warning_distance: 1.0  # meters
+  camera_focal_length: 800  # pixels (adjust based on camera)
+  real_object_height: 1.7  # meters (average person height)
+
+# Obstacle categories (COCO classes to consider as obstacles)
+obstacle_classes:
+  - 0  # person
+  - 1  # bicycle
+  - 2  # car
+  - 3  # motorcycle
+  - 4  # airplane
+  - 5  # bus
+  - 6  # train
+  - 7  # truck
+  - 9  # traffic light
+  - 10  # fire hydrant
+  - 11  # stop sign
+  - 13  # bench
+  - 14  # bird
+  - 15  # cat
+  - 16  # dog
+  - 17  # horse
+  - 18  # sheep
+  - 19  # cow
+  - 20  # elephant
+  - 21  # bear
+  - 22  # zebra
+  - 23  # giraffe
+  - 27  # truck
+  - 28  # traffic light
+  - 31  # handbag
+  - 33  # backpack
+  - 34  # umbrella
+  - 38  # sports ball
+  - 39  # kite
+  - 40  # baseball bat
+  - 41  # baseball glove
+  - 42  # skateboard
+  - 43  # surfboard
+  - 44  # tennis racket
+  - 47  # cup
+  - 48  # fork
+  - 49  # knife
+  - 50  # spoon
+  - 56  # chair
+  - 57  # couch
+  - 58  # potted plant
+  - 59  # bed
+  - 60  # dining table
+  - 62  # toilet
+  - 63  # tv
+  - 64  # laptop
+  - 65  # mouse
+  - 66  # remote
+  - 67  # keyboard
+  - 68  # cell phone
+  - 70  # book
+  - 72  # banana
+  - 73  # apple
+  - 74  # sandwich
+  - 75  # orange
+  - 76  # broccoli
+  - 77  # carrot
+  - 78  # hot dog
+  - 79  # pizza
+  - 80  # donut
+  - 81  # cake
+
+# Audio guidance settings
+audio:
+  enable_warnings: true
+  warning_frequency: 2.0  # seconds between warnings
+  voice_speed: 1.0
+  volume: 0.8
+
+# Visualization settings
+visualization:
+  show_confidence: true
+  show_distance: true
+  show_labels: true
+  bbox_thickness: 2
+  font_size: 0.5
+
+# Performance settings
+performance:
+  device: "auto"  # auto, cpu, cuda
+  batch_size: 1
+  half_precision: true
