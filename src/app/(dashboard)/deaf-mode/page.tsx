@@ -399,7 +399,7 @@ export default function DeafModePage() {
                     </CardHeader>
                     <CardContent>
                       <div className="bg-white p-4 rounded-lg border">
-                        <p className="text-lg leading-relaxed">{currentTranscript}</p>
+                        <p className="text-lg leading-relaxed text-black">{currentTranscript}</p>
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => speakText(currentTranscript)}
@@ -556,7 +556,7 @@ export default function DeafModePage() {
                             <p className="text-sm font-medium text-gray-600 mb-1">
                               {item.timestamp}
                             </p>
-                            <p className="text-sm leading-relaxed">
+                            <p className="text-sm leading-relaxed text-black">
                               {item.text}
                             </p>
                             {item.duration && (
