@@ -282,13 +282,13 @@ export default function CSVReader({ onDataLoaded, onObjectDetected }: CSVReaderP
         {/* Selected File Preview */}
         {selectedFile && (
           <div className="space-y-2">
-            <h4 className="text-sm font-medium">Preview: {selectedFile.name}</h4>
+            <h4 className="text-sm font-medium text-black">Preview: {selectedFile.name}</h4>
             <div className="max-h-40 overflow-y-auto border rounded-lg p-2 text-xs">
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
                     {Object.keys(selectedFile.data[0] || {}).map((key) => (
-                      <th key={key} className="text-left p-1">{key}</th>
+                      <th key={key} className="text-left p-1 text-black font-semibold">{key}</th>
                     ))}
                   </tr>
                 </thead>
@@ -296,7 +296,7 @@ export default function CSVReader({ onDataLoaded, onObjectDetected }: CSVReaderP
                   {selectedFile.data.slice(0, 5).map((row, index) => (
                     <tr key={index} className="border-b">
                       {Object.values(row).map((value, cellIndex) => (
-                        <td key={cellIndex} className="p-1 truncate">{String(value)}</td>
+                        <td key={cellIndex} className="p-1 truncate text-black">{String(value)}</td>
                       ))}
                     </tr>
                   ))}

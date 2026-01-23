@@ -401,8 +401,8 @@ export default function BlindModePage() {
                                   index === currentRowIndex ? 'bg-blue-100 font-semibold' : ''
                                 }`}
                               >
-                                <td className="px-3 py-2">{index + 1}</td>
-                                <td className="px-3 py-2">{row.Timestamp || row.timestamp || 'N/A'}</td>
+                                <td className="px-3 py-2 text-black">{index + 1}</td>
+                                <td className="px-3 py-2 text-black">{row.Timestamp || row.timestamp || 'N/A'}</td>
                                 <td className="px-3 py-2">
                                   <span className={`px-2 py-1 rounded text-xs font-medium ${
                                     (parseFloat(row.Confidence || row.confidence || 0) > 0.8) ? 'bg-red-100 text-red-800' :
@@ -421,10 +421,10 @@ export default function BlindModePage() {
                                     {(parseFloat(row.Confidence || row.confidence || 0) * 100).toFixed(1)}%
                                   </span>
                                 </td>
-                                <td className="px-3 py-2 text-xs">
+                                <td className="px-3 py-2 text-xs text-black">
                                   ({parseInt(row.X1 || row.x1 || 0)}, {parseInt(row.Y1 || row.y1 || 0)})
                                 </td>
-                                <td className="px-3 py-2 text-xs">
+                                <td className="px-3 py-2 text-xs text-black">
                                   {(parseInt(row.X2 || row.x2 || 0) - parseInt(row.X1 || row.x1 || 0)) || 0} × {(parseInt(row.Y2 || row.y2 || 0) - parseInt(row.Y1 || row.y1 || 0)) || 0}
                                 </td>
                                 <td className="px-3 py-2">
