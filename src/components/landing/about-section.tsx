@@ -151,7 +151,7 @@ export function AboutSection() {
         <div className="mt-16 text-center p-8 rounded-3xl backdrop-blur-xl bg-background/10 border border-border/30">
           <h3 className="text-2xl font-bold text-foreground mb-6">Get In Touch</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Have questions about our technology or want to collaborate? We'd love to hear from you.
+            Have questions about our technology or want to collaborate? We&apos;d love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

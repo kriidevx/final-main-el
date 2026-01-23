@@ -394,7 +394,7 @@ export default function BlindModeTest() {
                   <div className="text-center text-white">
                     <Camera className="w-16 h-16 mx-auto mb-4" />
                     <p>Camera is inactive</p>
-                    <p className="text-sm mt-2">Click "Start Camera" to begin</p>
+                    <p className="text-sm mt-2">Click &quot;Start Camera&quot; to begin</p>
                   </div>
                 </div>
               )}

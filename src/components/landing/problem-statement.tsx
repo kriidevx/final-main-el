@@ -122,7 +122,7 @@ export function ProblemStatement() {
             {/* Call to Action */}
             <div className="mt-8 text-center">
               <p className="text-lg text-muted-foreground mb-4">
-                Join thousands who've transformed their lives with our innovative technology
+                Join thousands who&apos;ve transformed their lives with our innovative technology
               </p>
               <a
                 href="#features"
