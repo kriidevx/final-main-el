@@ -80,21 +80,43 @@ export default function BlindModeTest() {
   // Initialize camera
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
+      // Create a timeout promise
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Camera access timeout')), 10000); // 10 second timeout
+      });
+
+      // Create camera access promise with fallback options
+      const cameraPromise = navigator.mediaDevices.getUserMedia({ 
         video: { 
           width: { ideal: 640 },
-          height: { ideal: 480 }
+          height: { ideal: 480 },
+          facingMode: 'user' // Prefer front camera
         } 
       });
+
+      // Race between camera access and timeout
+      const stream = await Promise.race([cameraPromise, timeoutPromise]) as MediaStream;
       
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         setIsCameraActive(true);
         startObjectDetection();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error accessing camera:', error);
-      speakText('Camera access denied. Please allow camera permissions.');
+      
+      // Handle different error types
+      if (error.name === 'NotAllowedError') {
+        speakText('Camera access denied. Please allow camera permissions and refresh.');
+      } else if (error.name === 'NotFoundError') {
+        speakText('No camera found. Please connect a camera and try again.');
+      } else if (error.name === 'NotReadableError') {
+        speakText('Camera is already in use by another application.');
+      } else if (error.message === 'Camera access timeout') {
+        speakText('Camera access timed out. Please check your camera connection and try again.');
+      } else {
+        speakText('Failed to access camera. Please check camera permissions.');
+      }
     }
   };
 
